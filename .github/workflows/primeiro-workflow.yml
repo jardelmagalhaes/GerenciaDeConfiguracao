@@ -1,0 +1,28 @@
+name: Atividade GC - Pipeline Simples
+
+# Gatilho: Executa sempre que houver um push (envio de código)
+on: [push]
+
+jobs:
+  meu-primeiro-job:
+    # Define a máquina virtual que vai rodar a pipeline (Ubuntu Linux)
+    runs-on: ubuntu-latest
+
+    steps:
+      # Passo 1: Baixar o código do repositório (Action Obrigatória 1)
+      - name: Baixar o código (Checkout)
+        uses: actions/checkout@v4
+
+      # Passo 2: Configurar o ambiente (Action Escolhida 2)
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      # Passo 3: Executar comandos simples (Requisito da atividade)
+      - name: Verificar arquivos e exibir mensagem
+        run: |
+          echo " Iniciando verificação..."
+          python --version
+          ls -la
+          echo "Pipeline executada com sucesso! Atividade de GC concluída."
